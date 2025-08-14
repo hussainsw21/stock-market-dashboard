@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getIndices, getHistory } from "./api";
+import { getIndices, getHistory, getPredictions } from "./api";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -58,6 +58,7 @@ function App() {
   const [indices, setIndices] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState("");
   const [historyData, setHistoryData] = useState([]);
+  const [predictionData, setPredictionData] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
@@ -72,10 +73,14 @@ function App() {
     setLoading(true);
     setNoData(false);
 
-    getHistory(selectedIndex, startDate, endDate)
-      .then(data => {
-        setHistoryData(data);
-        if (data.length === 0) {
+    Promise.all([
+      getHistory(selectedIndex, startDate, endDate),
+      getPredictions(selectedIndex, 7) // Predict 7 days ahead
+    ])
+      .then(([history, predictions]) => {
+        setHistoryData(history);
+        setPredictionData(predictions || []);
+        if (history.length === 0) {
           setNoData(true);
         }
       })
@@ -90,7 +95,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <h1 className="text-4xl font-bold mb-6 flex items-center gap-2">
-         Stock Index Dashboard 🚀✨
+        Stock Market Dashboard 🚀✨
       </h1>
 
       {/* Controls */}
@@ -145,18 +150,35 @@ function App() {
       {/* Charts */}
       {historyData.length > 0 && !loading && (
         <div className="space-y-12">
-          {/* Closing Value */}
+          {/* Closing Value with Predictions */}
           <div>
-            <h3 className="text-xl font-semibold mb-2">Closing Value</h3>
+            <h3 className="text-xl font-semibold mb-2">Closing Value (with Predictions)</h3>
             <Line
               data={{
-                labels: historyData.map(row => row.index_date),
+                labels: [
+                  ...historyData.map(row => row.index_date),
+                  ...predictionData.map(row => row.index_date)
+                ],
                 datasets: [
                   {
                     label: "Closing Value",
                     data: historyData.map(row => row.closing_index_value),
                     borderColor: "rgb(75, 192, 192)",
                     backgroundColor: "rgba(75, 192, 192, 0.4)",
+                    tension: 0.2
+                  },
+                  {
+                    label: "Predicted Close",
+                    data: [
+                      ...new Array(historyData.length - 1).fill(null),
+                      historyData.length > 0
+                        ? historyData[historyData.length - 1].closing_index_value
+                        : null,
+                      ...predictionData.map(p => p.predicted_close)
+                    ],
+                    borderColor: "rgb(255, 99, 132)",
+                    borderDash: [5, 5],
+                    backgroundColor: "rgba(255, 99, 132, 0.4)",
                     tension: 0.2
                   }
                 ]
@@ -206,6 +228,15 @@ function App() {
           </div>
         </div>
       )}
+      {/* Horizontal line */}
+      <hr className="border-gray-700 mt-12" />
+
+      {/* Footer */}
+      <footer className="mt-4 text-sm text-gray-500 text-center">
+        Powered by FastAPI, React, and Machine Learning  
+        <br />© {new Date().getFullYear()} Developed and Maintained by Hussain Shajapur Wala
+      </footer>
+
     </div>
   );
 }
