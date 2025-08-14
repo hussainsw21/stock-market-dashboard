@@ -88,9 +88,11 @@ Training: Uses historical closing_index_value
 Output: Future predictions for given number of days
 
 ## 📌 Challenges Faced
-Handling date formats and ensuring correct filtering
-Managing CORS errors between frontend & backend
-Aligning prediction data with chart rendering
+- Handling date formats and ensuring correct filtering
+  
+- Managing CORS errors between frontend & backend
+
+- Aligning prediction data with chart rendering
 
 ## 📸 Screenshots
 
