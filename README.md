@@ -87,12 +87,12 @@ Algorithm: Linear Regression (Scikit-learn)
 Training: Uses historical closing_index_value
 Output: Future predictions for given number of days
 
-##📌 Challenges Faced
+## 📌 Challenges Faced
 Handling date formats and ensuring correct filtering
 Managing CORS errors between frontend & backend
 Aligning prediction data with chart rendering
 
-##📸 Screenshots
+## 📸 Screenshots
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/bf3b05d6-39f0-43bc-8a8b-623de5c021bc" />
 
