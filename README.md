@@ -39,41 +39,43 @@ It allows users to select stock indices, view historical trends, and predict fut
 ---
 
 ## 📂 Project Structure
-stock-market-dashboard/
-│
-├── backend/
-│ ├── main.py # FastAPI server + ML integration
-│ ├── data/dump.csv # Sample dataset
-│ └── requirements.txt # Backend dependencies
-│
-├── frontend/
-│ ├── src/App.jsx # Main React component
-│ ├── src/api.js # API calls to backend
-│ └── tailwind.config.js
-│
-└── README.md
+- stock-market-dashboard/
+- │
+- ├── backend/
+- │ ├── main.py # FastAPI server + ML integration
+- │ ├── data/dump.csv # Sample dataset
+- │ └── requirements.txt # Backend dependencies
+- │
+- ├── frontend/
+- │ ├── src/App.jsx # Main React component
+- │ ├── src/api.js # API calls to backend
+- │ └── tailwind.config.js
+- │
+- └── README.md
+  
+---
 
 ## ⚡ Installation & Setup
 
 ### 1️⃣ Clone the Repository
-git clone https://github.com/hussainsw21/stock-market-dashboard.git
-cd stock-market-dashboard
+- git clone https://github.com/hussainsw21/stock-market-dashboard.git
+- cd stock-market-dashboard
 
 ### 2️⃣ Setup Backend
-cd backend
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload
+- cd backend
+- python -m venv venv
+- venv\Scripts\activate
+- pip install -r requirements.txt
+- uvicorn main:app --reload
 
-Backend will run on: http://127.0.0.1:8000
+- Backend will run on: http://127.0.0.1:8000
 
 ### 3️⃣ Setup Frontend
 - cd ../frontend
 - npm install
 - npm run dev
 
-Frontend will run on http://localhost:5173
+- Frontend will run on http://localhost:5173
 
 ### 📊 API Endpoints
 - Method	Endpoint	Description
@@ -82,6 +84,8 @@ Frontend will run on http://localhost:5173
 - GET	    /history	Get historical data for a given index
 - GET	    /predict	Get ML predictions for given index
 
+---
+
 ## 🧠 ML Model
 - Algorithm: Linear Regression (Scikit-learn)
 - Training: Uses historical closing_index_value
@@ -89,10 +93,10 @@ Frontend will run on http://localhost:5173
 
 ## 📌 Challenges Faced
 - Handling date formats and ensuring correct filtering
-  
 - Managing CORS errors between frontend & backend
-
 - Aligning prediction data with chart rendering
+
+---
 
 ## 📸 Screenshots
 
@@ -106,8 +110,11 @@ Frontend will run on http://localhost:5173
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6c16eb9f-6e27-468c-96c3-f5d800bc6973" />
 
+---
 
 ### 📜 License
 This project is for educational purposes only.
+
+---
 
 © Developed and Maintained by Hussain Shajapur Wala
