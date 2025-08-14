@@ -69,23 +69,23 @@ uvicorn main:app --reload
 Backend will run on: http://127.0.0.1:8000
 
 ### 3️⃣ Setup Frontend
-cd ../frontend
-npm install
-npm run dev
+- cd ../frontend
+- npm install
+- npm run dev
 
 Frontend will run on http://localhost:5173
 
 ### 📊 API Endpoints
-Method	Endpoint	Description
-GET	    /health	  Health check
-GET	    /indices	Get list of all stock indices
-GET	    /history	Get historical data for a given index
-GET	    /predict	Get ML predictions for given index
+- Method	Endpoint	Description
+- GET	    /health	  Health check
+- GET	    /indices	Get list of all stock indices
+- GET	    /history	Get historical data for a given index
+- GET	    /predict	Get ML predictions for given index
 
 ## 🧠 ML Model
-Algorithm: Linear Regression (Scikit-learn)
-Training: Uses historical closing_index_value
-Output: Future predictions for given number of days
+- Algorithm: Linear Regression (Scikit-learn)
+- Training: Uses historical closing_index_value
+- Output: Future predictions for given number of days
 
 ## 📌 Challenges Faced
 - Handling date formats and ensuring correct filtering
